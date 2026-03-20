@@ -1,4 +1,5 @@
 import { prisma } from "./lib/prisma";
+import Link from "next/link";
 export default async function Home() {
   const posts = await prisma.post.findMany({
     orderBy: { createdAt: "desc" },
@@ -7,6 +8,12 @@ export default async function Home() {
   return (
     <div className="mt-2 max-w-[800px] mx-auto p-4">
       <h1 className="text-2xl font-bold mb-4">Blog Posts</h1>
+      <Link
+        href="/create"
+        className="bg-blue-500 cursor-pointer text-white p-2 rounded-md"
+      >
+        Create Post
+      </Link>
       {posts.map((post) => {
         return (
           <div key={post.id} className="mb-4">

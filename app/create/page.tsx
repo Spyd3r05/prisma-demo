@@ -1,9 +1,9 @@
-import { createPost } from "../lib/actions";
-import { createClient } from "../lib/supabase/server";
+import { createPost } from "@/app/lib/actions";
+import { createServerComponentClient } from "@/app/lib/supabase/server";
 import { redirect } from "next/navigation";
 
 export default async function CreatePage() {
-  const supabase = await createClient();
+  const supabase = await createServerComponentClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -27,6 +27,18 @@ export default async function CreatePage() {
         type="text"
         name="content"
         placeholder="Content"
+        className="border border-gray-300 rounded-md p-2"
+      />
+      <input
+        type="text"
+        name="featuredImage"
+        placeholder="Featured Image URL"
+        className="border border-gray-300 rounded-md p-2"
+      />
+      <input
+        type="text"
+        name="tags"
+        placeholder="Tags (comma separated)"
         className="border border-gray-300 rounded-md p-2"
       />
       <button

@@ -8,6 +8,7 @@ export async function createPost(formData: FormData) {
 
   if (!title || !content) {
     throw new Error("Title and Content required!");
+    return;
   }
 
   await prisma.post.create({

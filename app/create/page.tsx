@@ -15,6 +15,7 @@ export default async function CreatePage() {
   return (
     <form
       action={createPost}
+      encType="multipart/form-data"
       className="flex flex-col gap-4 max-w-[500px] mx-auto mt-4"
     >
       <input
@@ -22,24 +23,29 @@ export default async function CreatePage() {
         name="title"
         placeholder="Title"
         className="border border-gray-300 rounded-md p-2"
+        required
       />
       <input
         type="text"
         name="content"
         placeholder="Content"
         className="border border-gray-300 rounded-md p-2"
+        required
       />
       <input
         type="file"
         name="featuredImage"
         placeholder="Featured Image"
+        accept="image/jpeg, image/png, image/webp"
         className="border border-gray-300 rounded-md p-2"
+        required
       />
       <input
         type="text"
         name="tags"
         placeholder="Tags (comma separated)"
         className="border border-gray-300 rounded-md p-2"
+        required
       />
       <button
         type="submit"

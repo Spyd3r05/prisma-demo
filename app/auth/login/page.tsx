@@ -11,6 +11,8 @@ import {
   TreeDeciduous,
   ArrowRight,
   FolderLock,
+  EyeOff,
+  Eye,
 } from "lucide-react";
 import { createUserInDb } from "@/app/lib/actions";
 import Link from "next/link";
@@ -23,6 +25,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [tab, setTab] = useState<"login" | "signup">("login");
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const supabase = createClient();
 
@@ -35,6 +38,8 @@ export default function LoginPage() {
     } else {
       setError(error?.message || "Something went wrong");
     }
+    setEmail("");
+    setPassword("");
     setIsLoading(false);
   };
 
@@ -51,8 +56,10 @@ export default function LoginPage() {
     if (error) {
       setError(error.message);
     } else {
-      router.push("/");
+      router.push("/create");
     }
+    setEmail("");
+    setPassword("");
     setIsLoading(false);
   };
 
@@ -167,13 +174,24 @@ export default function LoginPage() {
                     <Key className="w-4 h-4" />
                   </div>
                   <input
-                    type="password"
+                    type={showPassword ? "text" : "password"}
                     placeholder="••••••••"
                     className="w-full bg-white border-2 border-[#1A1A1A] py-3.5 pl-11 pr-4 text-xs font-medium focus:ring-0 focus:outline-none focus:bg-[#F8F5F0]/50 transition-all"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                   />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-0 pr-4 flex items-center text-[#1A1A1A]/30 group-focus-within:text-[#1B331A] transition-colors"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="w-4 h-4" />
+                    ) : (
+                      <Eye className="w-4 h-4" />
+                    )}
+                  </button>
                 </div>
               </div>
 

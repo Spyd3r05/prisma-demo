@@ -178,23 +178,25 @@ export default function LoginPage() {
               </div>
 
               {/* Action Button */}
-              <button
-                type="button"
-                onClick={tab === "login" ? handleLogin : handleSignUp}
-                disabled={isLoading}
-                className="w-full bg-[#1B331A] text-white py-4 font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3 border-2 border-[#1A1A1A] shadow-[4px_4px_0px_#1A1A1A] transition-all hover:translate-y-[-2px] hover:translate-x-[-2px] hover:shadow-[6px_6px_0px_#1A1A1A] active:translate-y-[2px] active:translate-x-[2px] active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed group"
-              >
-                {isLoading
-                  ? "PROCESSING..."
-                  : tab === "login"
-                    ? "SEED ACTIVATION"
-                    : "INITIALIZE ENTITY"}
-                {!isLoading && (
-                  <div className="relative">
-                    <Zap className="w-3.5 h-3.5 fill-white" />
-                  </div>
-                )}
-              </button>
+              <Link href="/create">
+                <button
+                  type="button"
+                  onClick={tab === "login" ? handleLogin : handleSignUp}
+                  disabled={isLoading}
+                  className="w-full bg-[#1B331A] text-white py-4 font-black text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3 border-2 border-[#1A1A1A] shadow-[4px_4px_0px_#1A1A1A] transition-all hover:translate-y-[-2px] hover:translate-x-[-2px] hover:shadow-[6px_6px_0px_#1A1A1A] active:translate-y-[2px] active:translate-x-[2px] active:shadow-none disabled:opacity-50 disabled:cursor-not-allowed group"
+                >
+                  {isLoading
+                    ? "PROCESSING..."
+                    : tab === "login"
+                      ? "SEED ACTIVATION"
+                      : "INITIALIZE ENTITY"}
+                  {!isLoading && (
+                    <div className="relative">
+                      <Zap className="w-3.5 h-3.5 fill-white" />
+                    </div>
+                  )}
+                </button>
+              </Link>
             </form>
 
             {/* Footer Form Link */}
